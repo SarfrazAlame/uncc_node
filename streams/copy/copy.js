@@ -1,3 +1,4 @@
+const { pipeline } = require("node:stream");
 const fs = require('node:fs/promises');
 
 // (async () => {
@@ -45,9 +46,14 @@ const fs = require('node:fs/promises');
     const streamRead = srcFile.createReadStream()
     const streamWrite = destFile.createWriteStream()
 
-    streamRead.pipe(streamWrite)
+    // streamRead.pipe(streamWrite)
 
-    streamRead.on("end", () => {
+    // streamRead.on("end", () => {
+    //     console.timeEnd("copy")
+    // })
+
+    pipeline(streamRead, streamWrite, (err) => {
+        console.log(err);
         console.timeEnd("copy")
     })
 
