@@ -83,7 +83,6 @@ class FileWriteStream extends Writable {
 
 (async () => {
     console.time("writeMany")
-    const fileHandler = await fsPromises.open("text.txt", "w");
 
     const stream = new FileWriteStream({ fileName: 'text.txt' })
 
@@ -113,7 +112,6 @@ class FileWriteStream extends Writable {
 
     stream.on("finish", () => {
         console.timeEnd("writeMany")
-        fileHandler.close()
     })
 
 })()
