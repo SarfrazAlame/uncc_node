@@ -10,7 +10,12 @@ server.on("connection", (socket) => {
 
     socket.on("data", async (data) => {
         if (!fileHandle) {
-            fileHandle = await fs.open(`storage/test.txt`, "w")
+            socket.pause();
+
+            const indexOfDivider = data.indexOf("-------");
+            const fileName = data.subarray(10, indexOfDivider).toString('utf-8')
+
+            fileHandle = await fs.open(`storage/${fileName}`, "w")
             fileWriteStream = fileHandle.createWriteStream();
 
             // Writing to our destination file
@@ -29,7 +34,7 @@ server.on("connection", (socket) => {
 
     // this end event happens when the client.js file ends the socket
     socket.on("end", () => {
-        fileHandle.close()
+        // fileHandle.close()
         fileHandle = undefined;
         fileWriteStream = undefined;
         socket.end();
