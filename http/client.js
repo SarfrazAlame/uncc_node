@@ -1,25 +1,36 @@
 const http = require("node:http");
 
-const agent = new http.Agent({keepAlive:true})
+const agent = new http.Agent({ keepAlive: true })
 
 const request = http.request({
-    agent:agent,
-    hostname:'localhost',
-    port:8000,
-    method:'POST',
-    path:"/create-user",
-    headers:{
-        "Content-Type":"application/json"
+    agent: agent,
+    hostname: 'localhost',
+    port: 8000,
+    method: 'POST',
+    path: "/create-user",
+    headers: {
+        "Content-Type": "application/json",
+        name: "Sarfraz"
     },
 })
 
-request.on("response", (response)=>{})
+request.on("response", (response) => {
+    console.log("-------- STATUS--------")
+    console.log(response.statusCode)
 
-request.write(JSON.stringify({message:'Hi there!'}))
-request.write(JSON.stringify({message:'How are you doing'}))
-request.write(JSON.stringify({message:'Hey you still there?'}))
-request.write(JSON.stringify({message:'Hey you still there?'}))
+    console.log("-------- HEADERS--------")
+    console.log(response.headers)
 
-request.end(JSON.stringify({message:"This is going to be my last message"}))
+    console.log("-------- BODY--------")
 
+    response.on("data", (chunk)=>{
+        console.log(chunk.toString('utf-8'))
+    })
+
+    response.on("end", ()=>{
+        console.log("No more data in response.")
+    })
+})
+
+request.end(JSON.stringify({ title: 'the title of my post', body: "This is some text and more and more " }))
 
