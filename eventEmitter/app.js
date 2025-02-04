@@ -12,7 +12,7 @@ myE.on("foo",()=>{
     console.log("An event occured 2")
 })
 
-myE.on("foo",(x)=>{
+myE.on("foos",(x)=>{
     console.log("An event with parameter occured")
     console.log(x)
 })

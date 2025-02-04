@@ -5,21 +5,22 @@ class Butter {
     constructor(){
         this.server = http.createServer()
 
+        this.routes = {}
+
         this.server.on("request", (req,res)=>{
-            console.log("request come in")
+            
+            this.routes[req.method.toLocaleLowerCase()+req.url]();
         })
     }
 
-    listen = (port,cb)=>{
+    listen (port,cb){
         this.server.listen(port, ()=>{
             cb()
         })
     }
 
-    route = (method, url, cb)=>{
-        if(method === 'GET'){
-            
-        }
+    route(method, url, cb){
+        
     }
 
 }
