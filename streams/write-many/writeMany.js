@@ -38,22 +38,22 @@
 // CPU Usage: 100% (one once)
 // Memory Usage: 50MB
 
-const fs = require('node:fs/promises');
+// const fs = require('node:fs/promises');
 
-(async () => {
-    console.time("writeMany")
-    const fileHandler = await fs.open("text.txt", "w");
+// (async () => {
+//     console.time("writeMany")
+//     const fileHandler = await fs.open("text.txt", "w");
 
-    const stream = fileHandler.createWriteStream()
+//     const stream = fileHandler.createWriteStream()
 
-    for (let i = 0; i < 1000000; i++) {
-        const buff = Buffer.from(` ${i} `, "utf-8");
-        stream.write(buff)
-    }
+//     for (let i = 0; i < 1000000; i++) {
+//         const buff = Buffer.from(` ${i} `, "utf-8");
+//         stream.write(buff)
+//     }
 
-    console.timeEnd("writeMany")
+//     console.timeEnd("writeMany")
 
-})()
+// })()
 
 
 
@@ -120,3 +120,32 @@ const fs = require('node:fs/promises');
 //     })
 
 // })()
+
+
+
+
+
+
+
+
+// ////////////////////////////////////////////////////////////////revision//////////////////////////////////////////////////////////////////////////////////////
+
+const fs = require("node:fs/promises");
+
+// (async()=>{
+//     try {
+//         // await fs.writeFile('text.txt', "Sarfraz ")
+//         const fileHandler = await fs.open('text.txt','w')
+//         fileHandler.write("Sarfraz Alam")
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })()
+
+ 
+(async()=>{
+    const fileHandler = await fs.open('text.txt','w');
+    const streamFile = fileHandler.createWriteStream()
+
+    streamFile.write("1212321321")
+})() 

@@ -7,15 +7,17 @@
 
 
 // ****** Promise API ****** //
-const fs = require("fs/promises");
+// const fs = require("fs/promises");
 
-(async () => {
-  try {
-    await fs.copyFile("text.txt", "copied-promise.txt");
-  } catch (error) {
-    console.log(error);
-  }
-})();
+// (async () => {
+//   try {
+//     await fs.copyFile("text.txt", "copied-promise.txt");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// })();
+
+
 
 // ****** Callback API ****** //
 // const fs = require("fs");
@@ -28,3 +30,26 @@ const fs = require("fs/promises");
 // const fs = require("fs");
 
 // fs.copyFileSync("file.txt", "copied-sync.txt");
+
+////////////////////////////////////////////////////////////////////////// revision ///////////////////////////////////////////////////////////////////////////////
+
+// const fs = require('fs')
+
+// const data = fs.readFileSync('text.txt')
+
+// console.log(data.toString('utf-8'))
+
+
+// Promises API
+// const fs = require("fs/promises");
+
+// (async()=>{
+//   try {
+//     await fs.copyFile('text.txt','copied-promise.txt')
+
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })()
+
+// callback api
